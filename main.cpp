@@ -8,6 +8,7 @@
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    TodoApp app;
+    app.run();
     return 0;
 }
