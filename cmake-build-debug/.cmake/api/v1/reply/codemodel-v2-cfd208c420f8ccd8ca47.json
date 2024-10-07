@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/monet/CLionProjects/LabProgrammazione/cmake-build-debug",
-		"source" : "C:/Users/monet/CLionProjects/LabProgrammazione"
+		"build" : "C:/Users/monet/CLionProjects/Lab-programmazione-UNIFI/cmake-build-debug",
+		"source" : "C:/Users/monet/CLionProjects/Lab-programmazione-UNIFI"
 	},
 	"version" : 
 	{
