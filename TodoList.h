@@ -1,7 +1,3 @@
-//
-// Created by monet on 07/10/2024.
-//
-
 #ifndef LABPROGRAMMAZIONE_TODOLIST_H
 #define LABPROGRAMMAZIONE_TODOLIST_H
 
@@ -9,10 +5,8 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include <nlohmann/json.hpp>  // Libreria JSON per la lettura e scrittura dei file
 
 using namespace std;
-using json = nlohmann::json;
 
 class TodoList {
     public:
@@ -47,6 +41,13 @@ class TodoList {
             }
         }
 
+        void markTaskImportant(const string& taskTitle) {
+            Task* task = getTask(taskTitle);
+            if (task) {
+                task->markImportant();
+            }
+        }
+
         // Elenca tutte le task
         void listTasks() const {
             for (const auto& task : tasks) {
@@ -55,40 +56,32 @@ class TodoList {
         }
 
         // Salva le task in un file JSON
-        void saveToFile(const string& filename) const {
-            ofstream file(filename);
+        void saveToFile() const {
+            ofstream file("todolist.txt");
             if (!file.is_open()) {
                 cerr << "Errore apertura file per scrittura" << endl;
                 return;
             }
-
-            json jsonTasks;
             for (const auto& task : tasks) {
-                jsonTasks.push_back({ {"title", task.getTitle()}, {"completed", task.isCompleted} });
+                file << task.serialize() << endl;
             }
-
-            file << jsonTasks.dump(4);  // Scrittura nel file con indentazione
             file.close();
         }
 
         // Carica le task da un file JSON
-        void loadFromFile(const string& filename) {
-            ifstream file(filename);
+        void loadFromFile() {
+            ifstream file("todolist.txt");
             if (!file.is_open()) {
                 cerr << "Errore apertura file per lettura" << endl;
                 return;
             }
 
-            json jsonTasks;
-            file >> jsonTasks;
-
-            for (const auto& taskData : jsonTasks) {
-                Task task(taskData["title"], "", 0);
-                if (taskData["completed"]) {
-                    task.markComplete();
-                }
-                addTask(task);
+            tasks.clear();
+            string line;
+            while (getline(file, line)) {
+                tasks.push_back(Task::deserialize(line));
             }
+            file.close();
         }
 
     private:
