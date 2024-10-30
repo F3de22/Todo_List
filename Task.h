@@ -1,13 +1,14 @@
 #ifndef LABPROGRAMMAZIONE_TASK_H
 #define LABPROGRAMMAZIONE_TASK_H
 
+#include <sstream>
 #include <string>
 using namespace std;
 
 class Task {
     public:
-        Task(const string& title, const string& description = "", time_t dueDate = 0)
-            : title(title), description(description), isCompleted(false), expirationDate(expirationDate) {}
+        Task(const string& title, const string& description = "", bool important=false, const string& expirationDate="")
+            : title(title), description(description), isCompleted(false), important(), expirationDate(expirationDate) {}
 
         void markComplete() {
             isCompleted = true;
@@ -23,26 +24,33 @@ class Task {
 
         // Metodo per convertire la task in stringa per la scrittura su file
         string serialize() const {
-            return title + ";" + description + ";" + (isCompleted ? "1" : "0");
+            string completionStatus = isCompleted ? "completata" : "non completata";
+            string importanceStatus = important ? "importante" : "non importante";
+            return title + "|" + description + "|" + completionStatus + "|" + importanceStatus + "|" + expirationDate;
+
         }
 
         // Metodo per ricostruire la task da una stringa letta dal file
         static Task deserialize(const string& data) {
-            size_t pos1 = data.find(";");
-            size_t pos2 = data.find(";", pos1 + 1);
+            stringstream ss(data);
+            string title, description, expirationDate, completedStr, importantStr;
 
-            string title = data.substr(0, pos1);
-            string description = data.substr(pos1 + 1, pos2 - pos1 - 1);
-            bool completed = data.substr(pos2 + 1) == "1";
+            getline(ss, title, '|');
+            getline(ss, description, '|');
+            getline(ss, expirationDate, '|');
+            getline(ss, completedStr, '|');
+            getline(ss, importantStr, '|');
 
-            return Task(title, description, completed);
+            Task task(title, description, importantStr == "1", expirationDate);
+            task.isCompleted = (completedStr == "1");
+            return task;
         }
 
         // Metodo per convertire la task in stringa (per la visualizzazione)
         string toString() const {
-            string status = isCompleted ? "✓" : "✗";
-            string dateStr = expirationDate == 0 ? "No deadline" : ctime(&expirationDate);
-            return status + " " + title + " (Due: " + dateStr + ")";
+            return title + " - " + description + " - Scadenza: " + expirationDate +
+            " - Completata: " + (isCompleted ? "✓" : "✗") +
+            " - Importante: " + (important ? "Sì" : "No");
         }
 
         // Getter per il titolo della task
@@ -55,7 +63,7 @@ class Task {
         string description;
         bool isCompleted;
         bool important;
-        time_t expirationDate;  // Timestamp per la data di scadenza
+        string expirationDate;
 };
 
 #endif //LABPROGRAMMAZIONE_TASK_H

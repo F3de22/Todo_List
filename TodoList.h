@@ -56,7 +56,7 @@ class TodoList {
         }
 
         // Salva le task in un file JSON
-        void saveToFile() const {
+        void saveToFile(const string& filename) const {
             ofstream file("todolist.txt");
             if (!file.is_open()) {
                 cerr << "Errore apertura file per scrittura" << endl;
