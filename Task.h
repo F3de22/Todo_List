@@ -4,8 +4,8 @@ using namespace std;
 
 class Task {
     public:
-        Task(const string& title, const string& description = "", bool important=false, const string& expirationDate="")
-            : title(title), description(description), isCompleted(false), important(), expirationDate(expirationDate) {}
+        Task(const string& title, const string& description = "", bool important=false, const string& expirationDate="-")
+            : title(title), description(description), isCompleted(false), important(important), expirationDate(expirationDate) {}
 
         void markComplete() {
             isCompleted = true;
@@ -16,7 +16,7 @@ class Task {
         }
 
         void markNotImportant(){
-            important = true;
+            important = false;
         }
 
         // Metodo per convertire la task in stringa per la scrittura su file
@@ -33,9 +33,9 @@ class Task {
 
             getline(ss, title, '|');
             getline(ss, description, '|');
-            getline(ss, expirationDate, '|');
             getline(ss, completedStr, '|');
             getline(ss, importantStr, '|');
+            getline(ss, expirationDate, '|');
 
             bool important = (importantStr == "importante");
 
@@ -47,8 +47,8 @@ class Task {
         // Metodo per convertire la task in stringa (per la visualizzazione)
         string visual() const {
             return title + " - " + description + " - Scadenza: " + expirationDate +
-            " - Completata: " + (isCompleted ? "✓" : "✗") +
-            " - Importante: " + (important ? "Sì" : "No");
+            " - Completata: " + (isCompleted ? "Si" : "No") +
+            " - Importante: " + (important ? "Si" : "No");
         }
 
         // Getter per il titolo della task
