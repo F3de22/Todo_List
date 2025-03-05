@@ -1,6 +1,3 @@
-#ifndef LABPROGRAMMAZIONE_TASK_H
-#define LABPROGRAMMAZIONE_TASK_H
-
 #include <sstream>
 #include <string>
 using namespace std;
@@ -23,15 +20,14 @@ class Task {
         }
 
         // Metodo per convertire la task in stringa per la scrittura su file
-        string serialize() const {
-            string completionStatus = isCompleted ? "completata" : "non completata";
-            string importanceStatus = important ? "importante" : "non importante";
-            return title + "|" + description + "|" + completionStatus + "|" + importanceStatus + "|" + expirationDate;
-
+        string toString() const {
+            string completed = isCompleted ? "completata" : "non completata";
+            string imp = important ? "importante" : "non importante";
+            return title + "|" + description + "|" + completed + "|" + imp + "|" + expirationDate;
         }
 
         // Metodo per ricostruire la task da una stringa letta dal file
-        static Task deserialize(const string& data) {
+        static Task toTask(const string& data) {
             stringstream ss(data);
             string title, description, expirationDate, completedStr, importantStr;
 
@@ -41,13 +37,15 @@ class Task {
             getline(ss, completedStr, '|');
             getline(ss, importantStr, '|');
 
-            Task task(title, description, importantStr == "1", expirationDate);
-            task.isCompleted = (completedStr == "1");
+            bool important = (importantStr == "importante");
+
+            Task task(title, description, important, expirationDate);
+            task.isCompleted = (completedStr == "completata");
             return task;
         }
 
         // Metodo per convertire la task in stringa (per la visualizzazione)
-        string toString() const {
+        string visual() const {
             return title + " - " + description + " - Scadenza: " + expirationDate +
             " - Completata: " + (isCompleted ? "✓" : "✗") +
             " - Importante: " + (important ? "Sì" : "No");
@@ -65,5 +63,3 @@ class Task {
         bool important;
         string expirationDate;
 };
-
-#endif //LABPROGRAMMAZIONE_TASK_H

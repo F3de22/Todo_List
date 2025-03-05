@@ -29,16 +29,17 @@ int main() {
             cout << "Descrizione task: ";
             getline(cin, description);
 
-            cout << "Data di scadenza (formato YYYY-MM-DD): ";
+            cout << "Data di scadenza (formato DD-MM-YYYY, premere INVIO per lasciare vuoto): ";
             getline(cin, expirationDate);
 
             char importantChoice;
             cout << "Segnare come importante? (s/n): ";
             cin >> importantChoice;
+            bool important = (importantChoice == 's');
+            todoList.addTask(Task(title, description,important,expirationDate));
 
-            bool important = (importantChoice == 's' || importantChoice == 'S');
-            todoList.addTask(Task(title, description));
-            cout <<"remember to save!"<<endl;
+
+            cout <<"ricordati di salvare!"<<endl;
         }
         else if (command == "full-list") {
             todoList.listTasks();
@@ -52,7 +53,7 @@ int main() {
         }
         else if (command == "completed") {
             string title;
-            cout << "Titolo task da completare: "<<endl;
+            cout << "Titolo task completata: "<<endl;
             getline(cin, title);
             todoList.markTaskComplete(title);
             cout <<"remember to save!"<<endl;

@@ -1,6 +1,3 @@
-#ifndef LABPROGRAMMAZIONE_TODOLIST_H
-#define LABPROGRAMMAZIONE_TODOLIST_H
-
 #include <vector>
 #include <fstream>
 #include <sstream>
@@ -18,9 +15,8 @@ class TodoList {
         // Rimuove una task dalla lista in base al titolo
         void removeTask(const string& taskTitle) {
             tasks.erase(remove_if(tasks.begin(), tasks.end(),
-                                  [&taskTitle](const Task& task) {
-                                      return task.getTitle() == taskTitle;
-                                  }), tasks.end());
+                                  [&taskTitle](const Task& task)
+                                  {return task.getTitle() == taskTitle;}), tasks.end());
         }
 
         // Trova una task basata sul titolo
@@ -48,10 +44,17 @@ class TodoList {
             }
         }
 
+        void markTaskNotImportant(const string& taskTitle) {
+            Task* task = getTask(taskTitle);
+            if (task) {
+                task->markNotImportant();
+            }
+        }
+
         // Elenca tutte le task
         void listTasks() const {
             for (const auto& task : tasks) {
-                cout << task.toString() << endl;
+                cout << task.visual() << endl;
             }
         }
 
@@ -63,7 +66,7 @@ class TodoList {
                 return;
             }
             for (const auto& task : tasks) {
-                file << task.serialize() << endl;
+                file << task.toString() << endl;
             }
             file.close();
         }
@@ -75,11 +78,10 @@ class TodoList {
                 cerr << "Errore apertura file per lettura" << endl;
                 return;
             }
-
             tasks.clear();
             string line;
             while (getline(file, line)) {
-                tasks.push_back(Task::deserialize(line));
+                tasks.push_back(Task::toTask(line));
             }
             file.close();
         }
@@ -88,5 +90,3 @@ class TodoList {
         vector<Task> tasks;
 };
 
-
-#endif //LABPROGRAMMAZIONE_TODOLIST_H
