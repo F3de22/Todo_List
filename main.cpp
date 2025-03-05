@@ -16,7 +16,7 @@ int main() {
 
     string command;
     while (true) {
-        cout << "Comando (add-task, full-list, important, completed, remove, save): ";
+        cout << "Comando (add-task, list, important, notimportant, completed, remove, quit): ";
         cin >> command;
 
         if (command == "add-task") {
@@ -38,10 +38,9 @@ int main() {
             bool important = (importantChoice == 's');
             todoList.addTask(Task(title, description,important,expirationDate));
 
-
-            cout <<"ricordati di salvare!"<<endl;
+            todoList.saveToFile("todolist.txt");
         }
-        else if (command == "full-list") {
+        else if (command == "list") {
             todoList.listTasks();
         }
         else if (command == "important") {
@@ -49,14 +48,24 @@ int main() {
             cout << "Titolo task da impostare come importante: "<<endl;
             getline(cin, title);
             todoList.markTaskImportant(title);
-            cout <<"remember to save!"<<endl;
+
+            todoList.saveToFile("todolist.txt");
+        }
+        else if(command == "notimportant"){
+            string title;
+            cout << "Titolo task da impostare come non importante: "<<endl;
+            getline(cin, title);
+            todoList.markTaskNotImportant(title);
+
+            todoList.saveToFile("todolist.txt");
         }
         else if (command == "completed") {
             string title;
             cout << "Titolo task completata: "<<endl;
             getline(cin, title);
             todoList.markTaskComplete(title);
-            cout <<"remember to save!"<<endl;
+
+            todoList.saveToFile("todolist.txt");
         }
         else if (command == "remove") {
             string title;
@@ -64,10 +73,9 @@ int main() {
             cin.ignore();
             getline(cin, title);
             todoList.removeTask(title);
-            cout <<"remember to save!"<<endl;
-        }
-        else if (command == "save") {
             todoList.saveToFile("todolist.txt");
+        }
+        else if(command =="quit"){
             break;
         }
     }
