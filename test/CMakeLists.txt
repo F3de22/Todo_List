@@ -11,6 +11,3 @@ set(TEST_SOURCE_FILES
 
 add_executable(TodoTests ${TEST_SOURCE_FILES})
 target_link_libraries(TodoTests gtest gtest_main core)
-
-enable_testing()
-add_test(NAME unitTests COMMAND TodoTests)

@@ -1,5 +1,6 @@
 #include <sstream>
 #include <string>
+#pragma once
 using namespace std;
 
 class Task {
@@ -17,6 +18,14 @@ class Task {
 
         void markNotImportant(){
             important = false;
+        }
+
+        bool getCompleted(){
+            return isCompleted;
+        }
+
+        bool getImportant(){
+            return important;
         }
 
         // Metodo per convertire la task in stringa per la scrittura su file

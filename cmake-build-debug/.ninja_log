@@ -1,0 +1,21 @@
+# ninja log v5
+0	1463	7635578505991795	CMakeFiles/LabProgrammazione.dir/main.cpp.obj	6525a2d5737aa600
+1	938	7635603363387613	build.ninja	596df37d14360028
+1466	1887	7635578510207092	LabProgrammazione.exe	105903572965653d
+1	245	7635603363387613	build.ninja	596df37d14360028
+2	994	7635656796012983	CMakeFiles/LabProgrammazione.dir/main.cpp.obj	6525a2d5737aa600
+995	1184	7635656797878037	LabProgrammazione.exe	105903572965653d
+0	1072	7635657995515675	CMakeFiles/core.dir/main.cpp.obj	da40bf4ced709070
+1073	1259	7635657997350953	libcore.a	1557d04ae6496d9e
+5	1889	7635658003680251	test/CMakeFiles/TodoTests.dir/runAllTests.cpp.obj	8785aeb8e3b0e706
+26	1946	7635658004251153	test/lib/googletest-main/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	1fbc87188f0bd0ec
+9	1998	7635658004772195	test/CMakeFiles/TodoTests.dir/TaskTest.cpp.obj	e966c0f06b70b25a
+20	9888	7635658083509873	test/lib/googletest-main/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	1250a8ee5ba09b86
+16	2618	7635659792922567	lib/libgtest.a	8951370f81897458
+16	102	7635661821624624	lib/libgtest_main.a	80b7c40b1e1cd921
+5	988	7635663997547653	CMakeFiles/core.dir/main.cpp.obj	da40bf4ced709070
+989	1102	7635663998590077	libcore.a	1557d04ae6496d9e
+8	1843	7635664006105684	test/CMakeFiles/TodoTests.dir/TaskTest.cpp.obj	e966c0f06b70b25a
+15	2025	7635664007924702	test/CMakeFiles/TodoTests.dir/TodoFixture.cpp.obj	9de3b519c390a402
+12	2105	7635664008717345	test/CMakeFiles/TodoTests.dir/TodoListTest.cpp.obj	4612c51cd5562c2d
+2105	4703	7635664034643331	test/TodoTests.exe	d827f4e93067b136
