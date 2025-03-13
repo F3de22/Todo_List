@@ -19,3 +19,7 @@
 15	2025	7635664007924702	test/CMakeFiles/TodoTests.dir/TodoFixture.cpp.obj	9de3b519c390a402
 12	2105	7635664008717345	test/CMakeFiles/TodoTests.dir/TodoListTest.cpp.obj	4612c51cd5562c2d
 2105	4703	7635664034643331	test/TodoTests.exe	d827f4e93067b136
+4	1549	7635668576007190	test/CMakeFiles/TodoTests.dir/TodoFixture.cpp.obj	9de3b519c390a402
+1549	4152	7635668601961416	test/TodoTests.exe	d827f4e93067b136
+3	728	7635668823741336	CMakeFiles/LabProgrammazione.dir/main.cpp.obj	6525a2d5737aa600
+728	863	7635668825059127	LabProgrammazione.exe	105903572965653d

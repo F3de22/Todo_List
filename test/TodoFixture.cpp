@@ -19,5 +19,5 @@ TEST_F(TodoListTestFixture, ContainsInitialTasks) {
 TEST_F(TodoListTestFixture, MarkTaskComplete) {
     list.markTaskComplete("comprare");
     Task* t = list.getTask("comprare");
-    EXPECT_NE(t->getCompleted(), true);
+    EXPECT_EQ(t->getCompleted(), true);
 }
