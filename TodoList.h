@@ -72,7 +72,7 @@ class TodoList {
             file.close();
         }
 
-        // Carica le task da un file JSON
+        // Carica le task da un file di testo
         void loadFromFile() {
             ifstream file("../todolist.txt");
             if (!file.is_open()) {
