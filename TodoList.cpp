@@ -61,7 +61,7 @@ void TodoList::markTaskNotImportant(const string& taskTitle) {
 int TodoList::getCompletedCount() const {
     int count = 0;
     for (const auto& task : tasks) {
-        if (task.getCompleted()) {
+        if (task.isCompleted()) {
             ++count;
         }
     }
@@ -71,7 +71,7 @@ int TodoList::getCompletedCount() const {
 int TodoList::getUncompletedCount() const {
     int count = 0;
     for (const auto &task: tasks) {
-        if (!task.getCompleted()) {
+        if (!task.isCompleted()) {
             ++count;
         }
     }

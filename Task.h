@@ -15,9 +15,9 @@ class Task {
 
         void markNotImportant();
 
-        bool getCompleted() const;
+        bool isCompleted() const;
 
-        bool getImportant() const;
+        bool isImportant() const;
 
         string getDescription() const;
 
@@ -40,7 +40,7 @@ class Task {
     private:
         string title;
         string description;
-        bool isCompleted;
+        bool completed;
         bool important;
         string expirationDate;
 };

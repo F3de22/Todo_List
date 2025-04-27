@@ -32,7 +32,7 @@ TEST(TodoListTest, MarkTaskComplete) {
     Task* found = list.getTask("studiare");
     ASSERT_NE(found, nullptr);
     EXPECT_EQ(list.getCompletedCount(),1);
-    EXPECT_TRUE(found->getCompleted());
+    EXPECT_TRUE(found->isCompleted());
 }
 
 TEST(TodoListTest, MarkTaskImportant) {
@@ -43,7 +43,7 @@ TEST(TodoListTest, MarkTaskImportant) {
     list.markTaskImportant("comprare");
     Task* found = list.getTask("comprare");
     ASSERT_NE(found, nullptr);
-    EXPECT_TRUE(found->getImportant());
+    EXPECT_TRUE(found->isImportant());
 }
 
 TEST(TodoListTest, MarkTaskNotImportant) {
@@ -55,7 +55,7 @@ TEST(TodoListTest, MarkTaskNotImportant) {
     list.markTaskNotImportant("lavorare");
     Task* found = list.getTask("lavorare");
     ASSERT_NE(found, nullptr);
-    EXPECT_FALSE(found->getImportant());
+    EXPECT_FALSE(found->isImportant());
 }
 
 TEST(TodoListTest, CountCompletedAndUncompleted) {
@@ -126,7 +126,7 @@ TEST(TodoListTest, SaveAndLoad) {
     EXPECT_EQ(loaded.getName(), "TestList");
     EXPECT_EQ(loaded.getAllTasks().size(), 2);
     EXPECT_EQ(loaded.getTask("task1")->getDescription(), "desc1");
-    EXPECT_TRUE(loaded.getTask("task2")->getImportant());
+    EXPECT_TRUE(loaded.getTask("task2")->isImportant());
 
     std::remove(filename.c_str());
 }

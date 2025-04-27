@@ -19,7 +19,7 @@ TEST_F(TodoListTestFixture, ContainsInitialTasks) {
 TEST_F(TodoListTestFixture, MarkTaskComplete) {
     list.markTaskComplete("comprare");
     Task* t = list.getTask("comprare");
-    EXPECT_EQ(t->getCompleted(), true);
+    EXPECT_EQ(t->isCompleted(), true);
 }
 
 TEST_F(TodoListTestFixture, RemoveTask) {
@@ -32,7 +32,7 @@ TEST_F(TodoListTestFixture, MarkTaskImportant) {
     list.markTaskImportant("studiare");
     Task* t = list.getTask("studiare");
     ASSERT_NE(t, nullptr);
-    EXPECT_TRUE(t->getImportant());
+    EXPECT_TRUE(t->isImportant());
 }
 
 TEST_F(TodoListTestFixture, EditTaskDetails) {

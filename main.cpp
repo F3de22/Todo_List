@@ -86,7 +86,7 @@ int main() {
             bool found = false;
             cout << "Task completate:" << endl;
             for (const auto& task : tasks) {
-                if (task.getCompleted()) {
+                if (task.isCompleted()) {
                     cout << "- "<< task.toString() << endl;
                     found = true;
                 }
@@ -98,7 +98,7 @@ int main() {
             bool found = false;
             cout << "Task non completate:" << endl;
             for (const auto& task : tasks) {
-                if (!task.getCompleted()) {
+                if (!task.isCompleted()) {
                     cout << "- "<< task.toString() << endl;
                     found = true;
                 }

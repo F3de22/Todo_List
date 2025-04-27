@@ -7,7 +7,7 @@ bool isValidDateFormat(const string& date) {
 }
 
 Task::Task(const string& title, const string& description, bool important, const string& expirationDate)
-        : title(title), description(description), isCompleted(false), important(important), expirationDate(expirationDate) {
+        : title(title), description(description), completed(false), important(important), expirationDate(expirationDate) {
     if (!expirationDate.empty() && expirationDate != "-" && !isValidDateFormat(expirationDate)) {
         throw invalid_argument("Data non valida. Usa il formato DD-MM-AAAA.");
     }
@@ -15,7 +15,7 @@ Task::Task(const string& title, const string& description, bool important, const
 }
 
 void Task::markComplete() {
-    isCompleted = true;
+    completed = true;
 }
 
 void Task::markImportant(){
@@ -26,11 +26,11 @@ void Task::markNotImportant(){
     important = false;
 }
 
-bool Task::getCompleted() const{
-    return isCompleted;
+bool Task::isCompleted() const{
+    return completed;
 }
 
-bool Task::getImportant() const{
+bool Task::isImportant() const{
     return important;
 }
 
@@ -63,9 +63,9 @@ void Task::setExpirationDate(const string& newDate) {
 
 // Metodo per convertire la task in stringa per la scrittura su file
 string Task::toString() const {
-    string completed = isCompleted ? "completata" : "non completata";
+    string completed_ = completed ? "completata" : "non completata";
     string imp = important ? "importante" : "non importante";
-    return title + "|" + description + "|" + completed + "|" + imp + "|" + expirationDate;
+    return title + "|" + description + "|" + completed_ + "|" + imp + "|" + expirationDate;
 }
 
 // Metodo per ricostruire la task da una stringa letta dal file
@@ -82,6 +82,6 @@ Task Task::toTask(const string& data) {
     bool important = (importantStr == "importante");
 
     Task task(title, description, important, expirationDate);
-    task.isCompleted = (completedStr == "completata");
+    task.completed = (completedStr == "completata");
     return task;
 }

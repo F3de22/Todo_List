@@ -7,8 +7,8 @@ TEST(TaskTest, CreationAndGetters) {
     EXPECT_EQ(task.getTitle(), "leggere");
     EXPECT_EQ(task.getDescription(), "leggere un libro");
     EXPECT_EQ(task.getExpirationDate(), "01-01-2025");
-    EXPECT_FALSE(task.getCompleted());
-    EXPECT_FALSE(task.getImportant());
+    EXPECT_FALSE(task.isCompleted());
+    EXPECT_FALSE(task.isImportant());
 }
 
 TEST(TaskTest, MarkCompleteAndImportance) {
@@ -17,11 +17,11 @@ TEST(TaskTest, MarkCompleteAndImportance) {
     task.markComplete();
     task.markImportant();
 
-    EXPECT_TRUE(task.getCompleted());
-    EXPECT_TRUE(task.getImportant());
+    EXPECT_TRUE(task.isCompleted());
+    EXPECT_TRUE(task.isImportant());
 
     task.markNotImportant();
-    EXPECT_FALSE(task.getImportant());
+    EXPECT_FALSE(task.isImportant());
 }
 
 TEST(TaskTest, Setters) {
@@ -66,7 +66,7 @@ TEST(TaskTest, ToStringAndFromString) {
     EXPECT_EQ(task.getTitle(), deserialized.getTitle());
     EXPECT_EQ(task.getDescription(), deserialized.getDescription());
     EXPECT_EQ(task.getExpirationDate(), deserialized.getExpirationDate());
-    EXPECT_EQ(task.getCompleted(), deserialized.getCompleted());
-    EXPECT_EQ(task.getImportant(), deserialized.getImportant());
+    EXPECT_EQ(task.isCompleted(), deserialized.isCompleted());
+    EXPECT_EQ(task.isImportant(), deserialized.isImportant());
     EXPECT_EQ(task.toString(), deserialized.toString());
 }
