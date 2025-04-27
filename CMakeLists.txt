@@ -3,11 +3,11 @@ project(LabProgrammazione)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LabProgrammazione main.cpp Task.h TodoList.h)
+add_executable(LabProgrammazione main.cpp Task.cpp TodoList.cpp)
 
 add_subdirectory(test)
 
-set(SOURCE_FILES main.cpp Task.h TodoList.h)
+set(SOURCE_FILES main.cpp Task.h TodoList.h TodoList.cpp Task.cpp)
 add_executable(unit_testing main.cpp)
 add_library(core ${SOURCE_FILES})
 target_link_libraries(unit_testing core)

@@ -55,6 +55,18 @@ build CMakeFiles/LabProgrammazione.dir/main.cpp.obj: CXX_COMPILER__LabProgrammaz
   OBJECT_DIR = CMakeFiles\LabProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\LabProgrammazione.dir
 
+build CMakeFiles/LabProgrammazione.dir/Task.cpp.obj: CXX_COMPILER__LabProgrammazione_Debug C$:/Users/monet/CLionProjects/Lab-programmazione-UNIFI/Task.cpp || cmake_object_order_depends_target_LabProgrammazione
+  DEP_FILE = CMakeFiles\LabProgrammazione.dir\Task.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabProgrammazione.dir
+
+build CMakeFiles/LabProgrammazione.dir/TodoList.cpp.obj: CXX_COMPILER__LabProgrammazione_Debug C$:/Users/monet/CLionProjects/Lab-programmazione-UNIFI/TodoList.cpp || cmake_object_order_depends_target_LabProgrammazione
+  DEP_FILE = CMakeFiles\LabProgrammazione.dir\TodoList.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\LabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\LabProgrammazione.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target LabProgrammazione
@@ -63,7 +75,7 @@ build CMakeFiles/LabProgrammazione.dir/main.cpp.obj: CXX_COMPILER__LabProgrammaz
 #############################################
 # Link the executable LabProgrammazione.exe
 
-build LabProgrammazione.exe: CXX_EXECUTABLE_LINKER__LabProgrammazione_Debug CMakeFiles/LabProgrammazione.dir/main.cpp.obj
+build LabProgrammazione.exe: CXX_EXECUTABLE_LINKER__LabProgrammazione_Debug CMakeFiles/LabProgrammazione.dir/main.cpp.obj CMakeFiles/LabProgrammazione.dir/Task.cpp.obj CMakeFiles/LabProgrammazione.dir/TodoList.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\LabProgrammazione.dir
@@ -121,6 +133,18 @@ build CMakeFiles/core.dir/main.cpp.obj: CXX_COMPILER__core_Debug C$:/Users/monet
   OBJECT_DIR = CMakeFiles\core.dir
   OBJECT_FILE_DIR = CMakeFiles\core.dir
 
+build CMakeFiles/core.dir/TodoList.cpp.obj: CXX_COMPILER__core_Debug C$:/Users/monet/CLionProjects/Lab-programmazione-UNIFI/TodoList.cpp || cmake_object_order_depends_target_core
+  DEP_FILE = CMakeFiles\core.dir\TodoList.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\core.dir
+  OBJECT_FILE_DIR = CMakeFiles\core.dir
+
+build CMakeFiles/core.dir/Task.cpp.obj: CXX_COMPILER__core_Debug C$:/Users/monet/CLionProjects/Lab-programmazione-UNIFI/Task.cpp || cmake_object_order_depends_target_core
+  DEP_FILE = CMakeFiles\core.dir\Task.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\core.dir
+  OBJECT_FILE_DIR = CMakeFiles\core.dir
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target core
@@ -129,7 +153,7 @@ build CMakeFiles/core.dir/main.cpp.obj: CXX_COMPILER__core_Debug C$:/Users/monet
 #############################################
 # Link the static library libcore.a
 
-build libcore.a: CXX_STATIC_LIBRARY_LINKER__core_Debug CMakeFiles/core.dir/main.cpp.obj
+build libcore.a: CXX_STATIC_LIBRARY_LINKER__core_Debug CMakeFiles/core.dir/main.cpp.obj CMakeFiles/core.dir/TodoList.cpp.obj CMakeFiles/core.dir/Task.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\core.dir
   POST_BUILD = cd .
