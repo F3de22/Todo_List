@@ -1,17 +1,17 @@
 #include "Task.h"
 
-bool isValidDateFormat(const string& date) {
-    // Regex per "DD-MM-AAAA", con giorno 01-31, mese 01-12, anno a 4 cifre
-    regex dateRegex(R"(^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$)");
-    return regex_match(date, dateRegex);
-}
-
 Task::Task(const string& title, const string& description, bool important, const string& expirationDate)
         : title(title), description(description), completed(false), important(important), expirationDate(expirationDate) {
     if (!expirationDate.empty() && expirationDate != "-" && !isValidDateFormat(expirationDate)) {
         throw invalid_argument("Data non valida. Usa il formato DD-MM-AAAA.");
     }
     this->expirationDate = expirationDate.empty() ? "-" : expirationDate;
+}
+
+bool Task::isValidDateFormat(const string& date) {
+    // Regex per "DD-MM-AAAA", con giorno 01-31, mese 01-12, anno a 4 cifre
+    regex dateRegex(R"(^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$)");
+    return regex_match(date, dateRegex);
 }
 
 void Task::markComplete() {

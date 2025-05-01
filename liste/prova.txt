@@ -1,4 +1,4 @@
 # prova
 nuovatask|prova|completata|importante|31-05-2022
 dsada|das|completata|importante|-
-nuova prova|asddas|non completata|non importante|-
+nuova prova|asddas|completata|non importante|-

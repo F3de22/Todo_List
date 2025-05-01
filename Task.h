@@ -9,6 +9,8 @@ class Task {
     public:
         Task(const string& title, const string& description = "", bool important=false, const string& expirationDate="-");
 
+        bool isValidDateFormat(const string& date);
+
         void markComplete();
 
         void markImportant();

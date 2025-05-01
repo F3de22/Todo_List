@@ -13,12 +13,18 @@ void TodoList::addTask(const Task& task) {
 }
 
 void TodoList::removeTask(const string& taskTitle) {
-    tasks.erase(remove_if(tasks.begin(), tasks.end(),
-                          [&taskTitle](const Task& task)
-                          {return task.getTitle() == taskTitle;}), tasks.end());
+    auto it = std::find_if(tasks.begin(), tasks.end(),[&taskTitle](const Task& task) {
+                               return task.getTitle() == taskTitle;
+                           });
+
+    if (it == tasks.end()) {
+        throw std::runtime_error("Task " + taskTitle + " non trovata.");
+    }
+
+    tasks.erase(it);
 }
 
-Task* TodoList::getTask(const string& taskTitle) {
+Task* TodoList::getTask(const string& taskTitle){
     for (auto& task : tasks) {
         if (task.getTitle() == taskTitle) {
             return &task;
@@ -39,23 +45,26 @@ vector<Task> TodoList::searchTasks(const string &keyword) {
 
 void TodoList::markTaskComplete(const string& taskTitle) {
     Task* task = getTask(taskTitle);
-    if (task) {
-        task->markComplete();
+    if (!task) {
+        throw std::runtime_error("Task " + taskTitle + " non trovata.");
     }
+    task->markComplete();
 }
 
 void TodoList::markTaskImportant(const string& taskTitle) {
     Task* task = getTask(taskTitle);
-    if (task) {
-        task->markImportant();
+    if (!task) {
+        throw std::runtime_error("Task " + taskTitle + " non trovata.");
     }
+    task->markImportant();
 }
 
 void TodoList::markTaskNotImportant(const string& taskTitle) {
     Task* task = getTask(taskTitle);
-    if (task) {
-        task->markNotImportant();
+    if (!task) {
+        throw std::runtime_error("Task " + taskTitle + " non trovata.");
     }
+    task->markNotImportant();
 }
 
 int TodoList::getCompletedCount() const {
@@ -77,6 +86,27 @@ int TodoList::getUncompletedCount() const {
     }
     return count;
 }
+
+vector<Task> TodoList::getCompletedTasks() const {
+    std::vector<Task> completed;
+    for (const auto& task : tasks) {
+        if (task.isCompleted()) {
+            completed.push_back(task);
+        }
+    }
+    return completed;
+}
+
+vector<Task> TodoList::getUncompletedTasks() const{
+    std::vector<Task> uncompleted;
+    for (const auto& task : tasks) {
+        if (!task.isCompleted()) {
+            uncompleted.push_back(task);
+        }
+    }
+    return uncompleted;
+}
+
 
 const vector<Task>& TodoList::getAllTasks() const {
     return tasks;

@@ -17,6 +17,10 @@ TEST(TodoListTest, RemoveTask) {
     Task t("comprare", "comprare il pane", false, "");
     list.addTask(t);
 
+    EXPECT_THROW({
+                     list.removeTask("inesistente");
+                 }, std::runtime_error);
+
     list.removeTask("comprare");
     Task* found = list.getTask("comprare");
     EXPECT_EQ(found, nullptr);
@@ -26,6 +30,10 @@ TEST(TodoListTest, MarkTaskComplete) {
     TodoList list("Test");
     Task t("studiare", "studiare C++", false, "");
     list.addTask(t);
+
+    EXPECT_THROW({
+                        list.markTaskComplete("inesistente");
+                    }, std::runtime_error);
 
     EXPECT_EQ(list.getCompletedCount(),0);
     list.markTaskComplete("studiare");
@@ -40,6 +48,10 @@ TEST(TodoListTest, MarkTaskImportant) {
     Task t("comprare", "comprare il latte", false, "");
     list.addTask(t);
 
+    EXPECT_THROW({
+                     list.markTaskImportant("inesistente");
+                 }, std::runtime_error);
+
     list.markTaskImportant("comprare");
     Task* found = list.getTask("comprare");
     ASSERT_NE(found, nullptr);
@@ -50,6 +62,11 @@ TEST(TodoListTest, MarkTaskNotImportant) {
     TodoList list("Test");
     Task t("lavorare", "scrivere report", false, "");
     list.addTask(t);
+
+    EXPECT_THROW({
+                     list.markTaskNotImportant("inesistente");
+                 }, std::runtime_error);
+
     list.markTaskImportant("lavorare");
 
     list.markTaskNotImportant("lavorare");
@@ -88,6 +105,34 @@ TEST(TodoListTest, SetAndGetName) {
     EXPECT_EQ(list.getName(), "Lavoro");
     list.setName("Casa");
     EXPECT_EQ(list.getName(), "Casa");
+}
+
+TEST(TodoListTest, GetCompletedTasks) {
+    TodoList list("test");
+    Task t1("comprare", "latte", false, "");
+    Task t2("studiare", "cpp", false, "");
+    t2.markComplete();
+
+    list.addTask(t1);
+    list.addTask(t2);
+
+    vector<Task> completed = list.getCompletedTasks();
+    ASSERT_EQ(completed.size(), 1);
+    EXPECT_EQ(completed[0].getTitle(), "studiare");
+}
+
+TEST(TodoListTest, GetUncompletedTasks) {
+    TodoList list("test");
+    Task t1("comprare", "latte", false, "");
+    Task t2("studiare", "cpp", false, "");
+    t2.markComplete();
+
+    list.addTask(t1);
+    list.addTask(t2);
+
+    vector<Task> uncompleted = list.getUncompletedTasks();
+    ASSERT_EQ(uncompleted.size(), 1);
+    EXPECT_EQ(uncompleted[0].getTitle(), "comprare");
 }
 
 TEST(TodoListTest, SearchTasks) {

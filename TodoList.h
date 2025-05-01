@@ -44,6 +44,12 @@ class TodoList {
         //ritorna il numero di task non completate
         int getUncompletedCount() const;
 
+        //ritorna le task completate
+        vector<Task> getCompletedTasks() const;
+
+        //ritorna le task non completate
+        vector<Task> getUncompletedTasks() const;
+
         //get di tutte le task
         const vector<Task>& getAllTasks() const;
 

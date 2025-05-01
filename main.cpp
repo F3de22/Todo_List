@@ -82,29 +82,29 @@ int main() {
             else
                 cout << "Nessuna task presente. Digita add-task per aggiungerne una nuova" << endl;
         }
-        else if(command == "listcompleted"){
-            bool found = false;
-            cout << "Task completate:" << endl;
-            for (const auto& task : tasks) {
-                if (task.isCompleted()) {
-                    cout << "- "<< task.toString() << endl;
-                    found = true;
+        else if(command == "listcompleted") {
+            vector<Task> completed = todoList.getCompletedTasks();
+            if (!completed.empty()) {
+                cout << "task completate:" << endl;
+                for (const auto &task: completed) {
+                    cout << "- " << task.toString() << endl;
                 }
             }
-            if (!found)
-                cout << "Nessuna task completata" << endl;
+            else{
+                cout<<"non ci sono task completate"<<endl;
+            }
         }
         else if(command == "listuncompleted"){
-            bool found = false;
-            cout << "Task non completate:" << endl;
-            for (const auto& task : tasks) {
-                if (!task.isCompleted()) {
-                    cout << "- "<< task.toString() << endl;
-                    found = true;
+            vector<Task> uncompleted = todoList.getUncompletedTasks();
+            if (!uncompleted.empty()) {
+                cout << "task non completate:" << endl;
+                for (const auto &task: uncompleted) {
+                    cout << "- " << task.toString() << endl;
                 }
             }
-            if (!found)
-                cout << "Nessuna task non completata" << endl;
+            else{
+                cout<<"non ci sono task non completate"<<endl;
+            }
         }
         else if (command == "important") {
             string title;
@@ -183,13 +183,11 @@ int main() {
             cout << "Nuovo nome per la lista: ";
             getline(cin, newName);
 
-            // Rinomina il file sul disco
             if (fs::exists(fileName)) {
                 string newFileName = basePath + newName + ".txt";
                 fs::rename(fileName, newFileName);  // <-- Rinomina il file
                 cout << "Lista rinominata da \"" << listName << "\" a \"" << newName << "\"" << endl;
 
-                // Aggiorna variabili
                 listName = newName;
                 fileName = newFileName;
                 todoList.setName(newName);
@@ -204,14 +202,12 @@ int main() {
 
             string newFileName = basePath + newListName + ".txt";
 
-            // Salva l’attuale lista prima di cambiare
             todoList.saveToFile(fileName);
 
-            // Cambia lista
             listName = newListName;
             fileName = newFileName;
 
-            todoList = TodoList(newListName);  // Nuova istanza
+            todoList = TodoList(newListName);
             todoList.loadFromFile(fileName);
 
             cout << "Sei passato alla lista: " << listName << endl;
