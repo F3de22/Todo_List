@@ -9,8 +9,6 @@ class Task {
     public:
         Task(const string& title, const string& description = "", bool important=false, const string& expirationDate="-");
 
-        bool isValidDateFormat(const string& date);
-
         void markComplete();
 
         void markImportant();
@@ -40,6 +38,8 @@ class Task {
         static Task toTask(const string& data);
 
     private:
+        bool isValidDateFormat(const string& date);
+
         string title;
         string description;
         bool completed;
